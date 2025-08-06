@@ -27,6 +27,7 @@
             background-color: #121212;
             color: #ffffff;
             overflow-x: hidden; /* Mencegah scroll horizontal */
+            transition: background-color 0.3s, color 0.3s; /* Transisi untuk perubahan tema */
         }
         
         /* Style untuk ikon yang dibuat oleh Lucide */
@@ -53,6 +54,7 @@
             position: absolute;
             inset: 0;
             background: linear-gradient(to top, #121212, transparent);
+            transition: background 0.3s; /* Transisi untuk perubahan tema */
         }
 
         /* Kontainer utama untuk konten */
@@ -83,6 +85,7 @@
             background-position: center;
             /* Placeholder jika gambar lokal tidak ditemukan */
             background-image: url('https://placehold.co/150x150/475569/e2e8f0?text=Profile'); 
+            transition: border-color 0.3s; /* Transisi untuk perubahan tema */
         }
 
         .profile-info {
@@ -112,6 +115,7 @@
         .profile-bio {
             color: #9ca3af;
             margin-top: 0.25rem;
+            transition: color 0.3s; /* Transisi untuk perubahan tema */
         }
 
         /* Konten utama di bawah profil */
@@ -136,8 +140,6 @@
             display: flex;
             align-items: center;
             gap: 0.375rem;
-            /* Hapus background-color lama */
-            /* background-color: #222222; */ 
             color: #d1d5db;
             font-size: 0.875rem;
             padding: 0.25rem 0.75rem;
@@ -149,6 +151,7 @@
             background: linear-gradient(135deg, #222222, #374151, #222222); /* Gradient dari kiri bawah ke kanan atas */
             background-size: 200% 200%; /* Ukuran background lebih besar untuk memungkinkan pergerakan */
             animation: gradient-shift 4s ease infinite alternate; /* Menerapkan animasi */
+            transition: background 0.3s, color 0.3s; /* Transisi untuk perubahan tema */
         }
 
         .interest-tag .lucide {
@@ -171,6 +174,7 @@
             display: flex;
             justify-content: center;
             gap: 1rem;
+            align-items: center; /* Pusatkan item secara vertikal */
         }
         
         .social-icon {
@@ -185,6 +189,30 @@
         }
 
         .social-icon .lucide {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+
+        /* Tombol pengalih tema */
+        #theme-toggle-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Warna default hijau untuk mode gelap */
+            color: #1DB954; 
+            transition: color 0.2s, transform 0.2s;
+        }
+
+        #theme-toggle-button:hover {
+            color: #ffffff;
+            transform: scale(1.1);
+        }
+
+        #theme-toggle-button .lucide {
             width: 1.5rem;
             height: 1.5rem;
         }
@@ -215,6 +243,7 @@
             background-color: #374151;
             padding: 0.5rem;
             border-radius: 0.5rem;
+            transition: background-color 0.3s; /* Transisi untuk perubahan tema */
         }
         
         .link-card-icon-wrapper .lucide {
@@ -232,11 +261,12 @@
         .link-card-description {
             font-size: 0.875rem;
             color: #9ca3af;
+            transition: color 0.3s; /* Transisi untuk perubahan tema */
         }
 
         .link-card-arrow {
             color: #6b7280;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, color 0.3s; /* Transisi untuk perubahan tema */
         }
 
         /* UPDATE: Menambahkan style untuk judul dan garis pemisah */
@@ -253,12 +283,14 @@
             text-transform: uppercase;
             font-size: 0.875rem;
             margin-bottom: 0.75rem;
+            transition: color 0.3s; /* Transisi untuk perubahan tema */
         }
 
         .divider-line {
             border: none;
             height: 1px;
             background: linear-gradient(to right, transparent, #374151, transparent);
+            transition: background 0.3s; /* Transisi untuk perubahan tema */
         }
         
         /* Footer */
@@ -267,6 +299,7 @@
             color: #6b7280;
             font-size: 0.875rem;
             padding-top: 1rem;
+            transition: color 0.3s; /* Transisi untuk perubahan tema */
         }
         
         @keyframes pulse {
@@ -319,20 +352,77 @@
             .link-card-title { font-size: 1.125rem; }
             .link-card-description { font-size: 1rem; }
         }
+
+        /* Mode Terang */
+        body.light-mode {
+            background-color: #f0f2f5; /* Latar belakang terang */
+            color: #333333; /* Warna teks gelap */
+        }
+
+        body.light-mode .header-gradient {
+            background: linear-gradient(to top, #f0f2f5, transparent);
+        }
+
+        body.light-mode .profile-picture {
+            border-color: #f0f2f5; /* Border gambar profil terang */
+        }
+
+        body.light-mode .profile-bio,
+        body.light-mode .link-card-description,
+        body.light-mode .main-footer,
+        body.light-mode .social-icon,
+        body.light-mode .section-title,
+        body.light-mode .link-card-arrow {
+            color: #666666; /* Warna teks abu-abu gelap */
+        }
+
+        body.light-mode .social-icon:hover {
+            color: #333333; /* Warna teks gelap saat hover */
+        }
+
+        /* Warna ikon tema di mode terang */
+        body.light-mode #theme-toggle-button {
+            color: #000000; /* Warna hitam untuk ikon di mode terang */
+        }
+
+        body.light-mode #theme-toggle-button:hover {
+            color: #333333; /* Warna teks gelap saat hover */
+        }
+
+        body.light-mode .interest-tag {
+            background: linear-gradient(135deg, #e0e0e0, #cccccc, #e0e0e0); /* Gradient terang */
+            color: #333333; /* Teks gelap di tag minat */
+        }
+
+        body.light-mode .link-card {
+            background-color: #ffffff; /* Latar belakang kartu terang */
+        }
+
+        body.light-mode .link-card:hover {
+            background-color: #e0e0e0; /* Latar belakang kartu terang saat hover */
+        }
+
+        body.light-mode .link-card-icon-wrapper {
+            background-color: #e0e0e0; /* Latar belakang ikon kartu terang */
+        }
+
+        body.light-mode .divider-line {
+            background: linear-gradient(to right, transparent, #cccccc, transparent); /* Garis pemisah terang */
+        }
     </style>
 </head>
 <body>
 
     <header class="header-fullscreen">
         <!-- Menggunakan jalur file lokal untuk gambar header -->
-        <div class="header-banner" style="background-image: url('./image/header.jpg');" onerror="this.style.backgroundImage='url(https://placehold.co/1920x400/334155/e2e8f0?text=Header+Image)'"></div>
+        <div class="header-banner" style="background-image: url('./media/header.jpg');" onerror="this.style.backgroundImage='url(https://placehold.co/1920x400/334155/e2e8f0?text=Header+Image)'"></div>
         <div class="header-gradient"></div>
     </header>
 
     <main class="content-container">
         <div class="profile-section">
             <!-- Menggunakan jalur file lokal untuk gambar profil -->
-            <div class="profile-picture" style="background-image: url('./image/profile.jpg');" onerror="this.style.backgroundImage='url(https://placehold.co/150x150/475569/e2e8f0?text=Profile)'"></div>
+            <div class="profile-picture" style="background-image: url('./media/profile.jpg');" onerror="this.style.backgroundImage='url(https://placehold.co/150x150/475569/e2e8f0?text=Profile)'"></div>
             <div class="profile-info">
                 <div class="profile-name-container">
                     <h1 class="profile-name">Hildemyda</h1>
@@ -355,6 +445,10 @@
                 <a href="https://youtube.com/@hildemyda" target="_blank" rel="noopener noreferrer" class="social-icon"><i data-lucide="youtube"></i></a>
                 <a href="https://wa.me/6285754711287" target="_blank" rel="noopener noreferrer" class="social-icon"><i data-lucide="message-circle-more"></i></a>
                 <a id="play-music-button" class="social-icon"><i data-lucide="music"></i></a>
+                <!-- Tombol pengalih tema -->
+                <button id="theme-toggle-button" aria-label="Toggle theme">
+                    <i data-lucide="sun" id="theme-icon"></i>
+                </button>
             </section>
 
             <div class="links-container">
@@ -402,7 +496,7 @@
         </div>
     </main>
 
-    <audio id="song-player" src="https://files.catbox.moe/v6imui.mp3"></audio>
+    <audio id="song-player" src="./media/stayhouse.mp3"></audio>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -434,6 +528,27 @@
                 });
             }
 
+            // Fungsionalitas pengalih tema
+            const themeToggleButton = document.getElementById('theme-toggle-button');
+            const themeIcon = document.getElementById('theme-icon');
+
+            // Periksa preferensi tema pengguna dari penyimpanan lokal atau default ke mode gelap
+            const currentTheme = localStorage.getItem('theme') || 'dark';
+            if (currentTheme === 'light') {
+                document.body.classList.add('light-mode');
+                alert('Changed to Light Mode.\nWaduuu silauuu bang')
+            } else {
+                document.body.classList.remove('light-mode');
+            }
+
+            themeToggleButton.addEventListener('click', () => {
+                document.body.classList.toggle('light-mode');
+                if (document.body.classList.contains('light-mode')) {
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
         });
     </script>
 </body>

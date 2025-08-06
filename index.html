@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hildemyda - Portofolio</title>
+
+    <!-- Menghubungkan ke Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Memuat library Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+    <!-- Kode CSS -->
+    <style>
+        /* Reset dasar dan pengaturan font global */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            overflow-x: hidden; /* Mencegah scroll horizontal */
+        }
+        
+        /* Style untuk ikon yang dibuat oleh Lucide */
+        .lucide {
+            stroke-width: 2;
+            vertical-align: middle;
+        }
+
+        /* Header Fullscreen */
+        .header-fullscreen {
+            position: relative;
+        }
+
+        .header-banner {
+            width: 100%;
+            height: 10rem;
+            background-size: cover;
+            background-position: center;
+            /* Placeholder jika gambar lokal tidak ditemukan */
+            background-image: url('https://placehold.co/1920x400/334155/e2e8f0?text=Header+Image'); 
+        }
+
+        .header-gradient {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, #121212, transparent);
+        }
+
+        /* Kontainer utama untuk konten */
+        .content-container {
+            position: relative;
+            width: 100%;
+            max-width: 48rem;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            margin-top: -5rem;
+        }
+
+        /* Bagian Profil */
+        .profile-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-picture {
+            width: 6rem;
+            height: 6rem;
+            border-radius: 9999px;
+            border: 4px solid #121212;
+            background-size: cover;
+            background-position: center;
+            /* Placeholder jika gambar lokal tidak ditemukan */
+            background-image: url('https://placehold.co/150x150/475569/e2e8f0?text=Profile'); 
+        }
+
+        .profile-info {
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .profile-name-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .verified-icon {
+            width: 1.5rem;
+            height: 1.5rem;
+            color: #3b82f6;
+            pointer-events: none;
+        }
+
+        .profile-bio {
+            color: #9ca3af;
+            margin-top: 0.25rem;
+        }
+
+        /* Konten utama di bawah profil */
+        .main-content {
+            margin-top: 2rem;
+            padding-bottom: 2.5rem;
+        }
+
+        .main-content > * + * {
+            margin-top: 1.5rem;
+        }
+
+        /* Bagian Minat (Interests) */
+        .interests-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .interest-tag {
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+            /* Hapus background-color lama */
+            /* background-color: #222222; */ 
+            color: #d1d5db;
+            font-size: 0.875rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            position: relative; /* Penting untuk animasi gradient */
+            overflow: hidden; /* Memastikan gradient tidak keluar dari batas */
+
+            /* Animasi Gradient Halus */
+            background: linear-gradient(135deg, #222222, #374151, #222222); /* Gradient dari kiri bawah ke kanan atas */
+            background-size: 200% 200%; /* Ukuran background lebih besar untuk memungkinkan pergerakan */
+            animation: gradient-shift 4s ease infinite alternate; /* Menerapkan animasi */
+        }
+
+        .interest-tag .lucide {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        /* Definisi Keyframes untuk Animasi Gradient */
+        @keyframes gradient-shift {
+            0% {
+                background-position: 0% 0%; /* Posisi awal gradient (kiri bawah) */
+            }
+            100% {
+                background-position: 100% 100%; /* Posisi akhir gradient (kanan atas) */
+            }
+        }
+
+        /* Bagian Link Sosial Media */
+        .social-links-section {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .social-icon {
+            color: #9ca3af;
+            transition: color 0.2s, transform 0.2s;
+            cursor: pointer;
+        }
+
+        .social-icon:hover {
+            color: #ffffff;
+            transform: scale(1.1);
+        }
+
+        .social-icon .lucide {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+
+        /* Kartu Link */
+        .links-container > * + * {
+            margin-top: 1rem;
+        }
+
+        .link-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background-color: #222222;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            text-decoration: none;
+            color: inherit;
+            transition: background-color 0.2s, transform 0.2s;
+        }
+
+        .link-card:hover {
+            background-color: #374151;
+            transform: translateY(-4px);
+        }
+
+        .link-card-icon-wrapper {
+            background-color: #374151;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+        }
+        
+        .link-card-icon-wrapper .lucide {
+            display: block;
+        }
+
+        .link-card-text {
+            flex-grow: 1;
+        }
+
+        .link-card-title {
+            font-weight: 600;
+        }
+
+        .link-card-description {
+            font-size: 0.875rem;
+            color: #9ca3af;
+        }
+
+        .link-card-arrow {
+            color: #6b7280;
+            transition: transform 0.3s ease;
+        }
+
+        /* UPDATE: Menambahkan style untuk judul dan garis pemisah */
+        .section-divider {
+            margin-top: 2.5rem; /* Memberi jarak lebih di atas */
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .section-title {
+            color: #9ca3af;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .divider-line {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #374151, transparent);
+        }
+        
+        /* Footer */
+        .main-footer {
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.875rem;
+            padding-top: 1rem;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        #play-music-button.playing .lucide {
+            animation: pulse 1.5s infinite;
+            color: #1DB954;
+        }
+
+        /* Desain Responsif untuk Mobile (ukuran layar di bawah 768px) */
+        @media (max-width: 767px) {
+            /* BARU: Mengurangi ukuran font untuk seluruh teks di dalam link-card-text */
+            .link-card-text {
+                font-size: 0.75rem; /* Sedikit kecilkan seluruh teks di dalam link-card-text */
+            }
+
+            /* DIKEMBALIKAN: link-card-description kembali ke ukuran defaultnya */
+            .link-card-description {
+                /* Menghapus override font-size sebelumnya, sehingga kembali ke 0.875rem */
+            }
+
+            /* BARU: Merapatkan jarak di atas bio profil di mode seluler */
+            .profile-bio {
+                margin-top: 0.1rem; /* Rapatkan profile-bio */
+            }
+
+            /* BARU: Merapatkan jarak di atas bagian minat di mode seluler */
+            .interests-section {
+                margin-top: 0.5rem; /* Rapatkan interest-tag dengan bagian sebelumnya */
+            }
+        }
+
+        /* Desain Responsif untuk Desktop */
+        @media (min-width: 768px) {
+            .header-banner { height: 14rem; }
+            .profile-picture { width: 8rem; height: 8rem; border-width: 6px; }
+            .profile-info { margin-top: 1.5rem; }
+            .profile-name { font-size: 2.25rem; }
+            .verified-icon { width: 2rem; height: 2rem; }
+            .profile-bio { font-size: 1.125rem; margin-top: 0.5rem; }
+            .main-content { margin-top: 2rem; }
+            .main-content > * + * { margin-top: 2rem; }
+            .interests-section { gap: 0.75rem; }
+            .interest-tag { font-size: 1rem; padding: 0.375rem 1rem; }
+            .social-links-section { gap: 1.5rem; }
+            .social-icon .lucide { width: 1.75rem; height: 1.75rem; }
+            .link-card-title { font-size: 1.125rem; }
+            .link-card-description { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header-fullscreen">
+        <!-- Menggunakan jalur file lokal untuk gambar header -->
+        <div class="header-banner" style="background-image: url('./image/header.jpg');" onerror="this.style.backgroundImage='url(https://placehold.co/1920x400/334155/e2e8f0?text=Header+Image)'"></div>
+        <div class="header-gradient"></div>
+    </header>
+
+    <main class="content-container">
+        <div class="profile-section">
+            <!-- Menggunakan jalur file lokal untuk gambar profil -->
+            <div class="profile-picture" style="background-image: url('./image/profile.jpg');" onerror="this.style.backgroundImage='url(https://placehold.co/150x150/475569/e2e8f0?text=Profile)'"></div>
+            <div class="profile-info">
+                <div class="profile-name-container">
+                    <h1 class="profile-name">Hildemyda</h1>
+                    <svg class="verified-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,2C6.477,2,2,6.477,2,12s4.477,10,10,10s10-4.477,10-10S17.523,2,12,2z M16.707,9.293l-6,6 C10.512,15.488,10.256,15.583,10,15.583s-0.512-0.095-0.707-0.293l-3-3c-0.391-0.391-0.391-1.023,0-1.414s1.023-0.391,1.414,0 L10,13.172l5.293-5.293c0.391-0.391,1.023-0.391,1.414,0S17.098,8.902,16.707,9.293z"></path></svg>
+                </div>
+                <p class="profile-bio">Hanya manusia biasa, makan nasi</p>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <section class="interests-section">
+                <div class="interest-tag"><i data-lucide="leaf"></i> Nature</div>
+                <div class="interest-tag"><i data-lucide="pen-tool"></i> Design</div>
+                <div class="interest-tag"><i data-lucide="code"></i> Coder</div>
+            </section>
+
+            <section class="social-links-section">
+                <a href="https://github.com/hildemyda" target="_blank" rel="noopener noreferrer" class="social-icon"><i data-lucide="github"></i></a>
+                <a href="https://instagram.com/hildemyda" target="_blank" rel="noopener noreferrer" class="social-icon"><i data-lucide="instagram"></i></a>
+                <a href="https://youtube.com/@hildemyda" target="_blank" rel="noopener noreferrer" class="social-icon"><i data-lucide="youtube"></i></a>
+                <a href="https://wa.me/6285754711287" target="_blank" rel="noopener noreferrer" class="social-icon"><i data-lucide="message-circle-more"></i></a>
+                <a id="play-music-button" class="social-icon"><i data-lucide="music"></i></a>
+            </section>
+
+            <div class="links-container">
+                <a href="https://chat.whatsapp.com/F9GDYQOKWxk4l3xs7fXmAJ" target="_blank" rel="noopener noreferrer" class="link-card">
+                    <div class="link-card-icon-wrapper"><i data-lucide="users"></i></div>
+                    <div class="link-card-text"><h2 class="link-card-title">Hill's Project</h2><p class="link-card-description">WhatsApp Group</p></div>
+                    <i data-lucide="arrow-right" class="link-card-arrow"></i>
+                </a>
+                <a href="https://hildemyda.github.io/" target="_blank" rel="noopener noreferrer" class="link-card">
+                    <div class="link-card-icon-wrapper"><i data-lucide="server"></i></div>
+                    <div class="link-card-text"><h2 class="link-card-title">Test1</h2><p class="link-card-description">Desc1</p></div>
+                    <i data-lucide="arrow-right" class="link-card-arrow"></i>
+                </a>
+
+                <div class="section-divider">
+                    <!-- <h3 class="section-title">MY-PROJECT</h3> -->
+                    <hr class="divider-line">
+                </div>
+
+                <a href="https://hildemyda.github.io/audio-libraryku/" target="_blank" rel="noopener noreferrer" class="link-card">
+                    <div class="link-card-icon-wrapper"><i data-lucide="file-audio"></i></div>
+                    <div class="link-card-text"><h2 class="link-card-title">Audio Library</h2><p class="link-card-description">Lagu lagu Spotifai-ku</p></div>
+                    <i data-lucide="arrow-right" class="link-card-arrow"></i>
+                </a>
+                <a href="https://hildemyda.github.io/qrcode-generator/" target="_blank" rel="noopener noreferrer" class="link-card">
+                    <div class="link-card-icon-wrapper"><i data-lucide="qr-code"></i></div>
+                    <div class="link-card-text"><h2 class="link-card-title">QR Code Generator</h2><p class="link-card-description">Website pembuat Kode QR</p></div>
+                    <i data-lucide="arrow-right" class="link-card-arrow"></i>
+                </a>
+                <a href="https://hildemyda.github.io/paduwo-main/" target="_blank" rel="noopener noreferrer" class="link-card">
+                    <div class="link-card-icon-wrapper"><i data-lucide="book-heart"></i></div>
+                    <div class="link-card-text"><h2 class="link-card-title">Paduwo's Website</h2><p class="link-card-description">XII IPA 2 MAN Kapuas</p></div>
+                    <i data-lucide="arrow-right" class="link-card-arrow"></i>
+                </a>
+                <a href="https://aksana29-mankapuas.github.io/" target="_blank" rel="noopener noreferrer" class="link-card">
+                    <div class="link-card-icon-wrapper"><i data-lucide="globe"></i></div>
+                    <div class="link-card-text"><h2 class="link-card-title">Buku Tahunan AKSANA</h2><p class="link-card-description">MAN Kapuas Angkatan ke-29</p></div>
+                    <i data-lucide="arrow-right" class="link-card-arrow"></i>
+                </a>
+            </div>
+            
+            <footer class="main-footer">
+                <p>&copy; 2025 Hildemyda</p>
+            </footer>
+        </div>
+    </main>
+
+    <audio id="song-player" src="https://files.catbox.moe/v6imui.mp3"></audio>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+
+            document.body.addEventListener('contextmenu', (event) => {
+                event.preventDefault();
+            });
+
+            const playButton = document.getElementById('play-music-button');
+            const songPlayer = document.getElementById('song-player');
+
+            if (playButton && songPlayer) {
+                playButton.addEventListener('click', () => {
+                    if (songPlayer.paused) {
+                        songPlayer.play();
+                    } else {
+                        songPlayer.pause();
+                        songPlayer.currentTime = 0; 
+                    }
+                });
+                
+                songPlayer.addEventListener('play', () => {
+                    playButton.classList.add('playing');
+                });
+
+                songPlayer.addEventListener('pause', () => {
+                    playButton.classList.remove('playing');
+                });
+            }
+
+        });
+    </script>
+</body>
+</html>
